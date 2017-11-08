@@ -7,8 +7,8 @@ import Title from "../components/Title";
 import { Section, Image } from "../components/base/StyledComponents";
 import { Flex, Box } from "grid-styled";
 import ProjectCard from "../components/ProjectCard";
-import photoCanvasImage from "../assets/images/project-1.png";
-import cardsMenuConcept from "../assets/images/project-2.png";
+import photoCanvasImage from "../assets/images/project_1.png";
+import cardsMenuConcept from "../assets/images/project_2.png";
 
 const ProjectList = styled.ul`
   display: flex;

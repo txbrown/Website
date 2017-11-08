@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Container from "../components/Container";
 import JumboTitle from "../components/JumboTitle";
 import Title from "../components/Title";
-import blog1Image from "../assets/images/blog-post-1.png";
+import blog1Image from "../assets/images/blog_post_1.png";
 import { Section, Image } from "../components/base/StyledComponents";
 import { Flex, Box } from "grid-styled";
 import Card from "../components/Card";
