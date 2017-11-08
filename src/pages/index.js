@@ -5,7 +5,7 @@ import JumboTitle from "../components/JumboTitle";
 import styled from "styled-components";
 import Title from "../components/Title";
 import photoCanvasImage from "../assets/images/project_1.png";
-// import cardsMenuConcept from "../assets/images/project_2.png";
+import cardsMenuConcept from "../assets/images/project_2.png";
 import blog1Image from "../assets/images/blog_post_1.png";
 import Card from "../components/Card";
 import ProjectCard from "../components/ProjectCard";
@@ -99,11 +99,11 @@ const IndexPage = () => (
           />
         </Item>
         <Item>
-          {/* <ProjectCard
+          <ProjectCard
             image={cardsMenuConcept}
             title="Cards Menu Concept"
             highlightcColor="#33D399"
-          /> */}
+          />
         </Item>
       </ProjectList>
       <Flex justify="center">
