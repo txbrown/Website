@@ -4,12 +4,11 @@ import Container from "../components/Container";
 import JumboTitle from "../components/JumboTitle";
 import styled from "styled-components";
 import Title from "../components/Title";
-import photoCanvasImage from "../assets/images/project_1.png";
-import cardsMenuConcept from "../assets/images/project_2.png";
 import blog1Image from "../assets/images/blog_post_1.png";
 import Card from "../components/Card";
 import ProjectCard from "../components/ProjectCard";
 import { Flex, Box } from "grid-styled";
+import ProjectList from "../components/ProjectList";
 
 const SiteTile = JumboTitle.extend`
   ::after {
@@ -35,17 +34,6 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   margin-bottom: 6.7em;
-`;
-
-const ProjectList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-bottom: 2em;
-`;
-
-const Item = styled.li`
-  width: 50%;
 `;
 
 const MoreButton = styled.a`
@@ -77,76 +65,122 @@ const MoreButton = styled.a`
   }
 `;
 
-const IndexPage = () => (
-  <Container>
-    <ProfileSection>
-      <SiteTile style={{}}>Ricardo Abreu</SiteTile>
-      <Intro>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
-        massa sit amet ante vehicula tempor non eu orci.
-      </Intro>
-    </ProfileSection>
+const IndexPage = ({ data }) => {
+  const { edges: posts } = data.allMarkdownRemark;
 
-    <Section>
-      <Title>Projects</Title>
+  return (
+    <Container>
+      <ProfileSection>
+        <SiteTile style={{}}>Ricardo Abreu</SiteTile>
+        <Intro>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
+          massa sit amet ante vehicula tempor non eu orci.
+        </Intro>
+      </ProfileSection>
 
-      <ProjectList>
-        <Item>
-          <ProjectCard
-            image={photoCanvasImage}
-            title="PhotoCanvas - UWP"
-            highlightcColor="#ffeb5c"
-          />
-        </Item>
-        <Item>
-          <ProjectCard
-            image={cardsMenuConcept}
-            title="Cards Menu Concept"
-            highlightcColor="#33D399"
-          />
-        </Item>
-      </ProjectList>
-      <Flex justify="center">
-        <Box>
-          <MoreButton href="projects">All projects</MoreButton>
-        </Box>
-      </Flex>
-    </Section>
+      <Section>
+        <Title>Projects</Title>
 
-    <Section>
-      <Title>Blog Posts</Title>
-      <Flex>
-        <Box width={1 / 2} mr={2}>
-          <Card
-            image={blog1Image}
-            category="Web Development"
-            date="24 October 2016"
-            title="Blog Post 1"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+        <ProjectList />
+        <Flex justify="center">
+          <Box>
+            <MoreButton href="projects">All projects</MoreButton>
+          </Box>
+        </Flex>
+      </Section>
+
+      <Section>
+        <Title>Blog Posts</Title>
+        <Flex wrap>
+          {posts
+            .filter(post => post.node.frontmatter.title.length > 0)
+            .map(({ node: post }) => {
+              return (
+                <Box
+                  width={[1, 1 / 2, 1 / 2, 1 / 2]}
+                  mb={[2, 0, 0, 0]}
+                  pr={[2]}
+                  key={post.id}
+                >
+                  <Link to={post.frontmatter.path}>
+                    <Card
+                      image={
+                        post.frontmatter.img.childImageSharp.responsiveSizes.src
+                      }
+                      category="Web Development"
+                      date={post.frontmatter.date}
+                      title={post.frontmatter.title}
+                      description={post.excerpt}
+                    />
+                  </Link>
+                </Box>
+              );
+            })}
+          {/* <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 0, 0, 0]} pr={[2]}>
+          <Link>
+            <Card
+              image={blog1Image}
+              category="Web Development"
+              date="24 October 2016"
+              title="Blog Post 1"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
                 mattis urna vitae ipsum vulputate congue id ac nibh. Curabitur
                 ac sem mollis, porta ante ac, porta tortor."
-          />
+            />
+          </Link>
         </Box>
-        <Box width={1 / 2}>
-          <Card
-            image={blog1Image}
-            category="Web Development"
-            date="24 October 2016"
-            title="Blog Post 1"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+        <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} pr={[2]}>
+          <Link>
+            <Card
+              image={blog1Image}
+              category="Web Development"
+              date="24 October 2016"
+              title="Blog Post 1"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
             mattis urna vitae ipsum vulputate congue id ac nibh. Curabitur
             ac sem mollis, porta ante ac, porta tortor."
-          />
-        </Box>
-      </Flex>
+            />
+          </Link>
+        </Box> */}
+        </Flex>
 
-      <Flex justify="center">
-        <Box>
-          <MoreButton href="blog">Read all</MoreButton>
-        </Box>
-      </Flex>
-    </Section>
-  </Container>
-);
+        <Flex justify="center">
+          <Box>
+            <Link>
+              <MoreButton href="blog">Read all</MoreButton>
+            </Link>
+          </Box>
+        </Flex>
+      </Section>
+    </Container>
+  );
+};
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+  query BlogsQuery {
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          excerpt(pruneLength: 250)
+          id
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+            path
+            img {
+              childImageSharp {
+                responsiveSizes(maxWidth: 400) {
+                  src
+                  srcSet
+                  sizes
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

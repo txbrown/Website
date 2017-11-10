@@ -7,35 +7,35 @@ import blog1Image from "../assets/images/blog_post_1.png";
 import { Section, Image } from "../components/base/StyledComponents";
 import { Flex, Box } from "grid-styled";
 import Card from "../components/Card";
+import Link from "gatsby-link";
 
-const Blog = () => {
+const Blog = ({ data }) => {
+  const { edges: posts } = data.allMarkdownRemark;
+  console.log(data);
   return (
     <Container>
       <Section>
         <Title>Blog Posts</Title>
         <Flex>
-          <Box width={1 / 2} mr={2}>
-            <Card
-              image={blog1Image}
-              category="Web Development"
-              date="24 October 2016"
-              title="Blog Post 1"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                mattis urna vitae ipsum vulputate congue id ac nibh. Curabitur
-                ac sem mollis, porta ante ac, porta tortor."
-            />
-          </Box>
-          <Box width={1 / 2}>
-            <Card
-              image={blog1Image}
-              category="Web Development"
-              date="24 October 2016"
-              title="Blog Post 1"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-            mattis urna vitae ipsum vulputate congue id ac nibh. Curabitur
-            ac sem mollis, porta ante ac, porta tortor."
-            />
-          </Box>
+          {posts
+            .filter(post => post.node.frontmatter.title.length > 0)
+            .map(({ node: post }) => {
+              return (
+                <Box width={1 / 2} mr={2}>
+                  <Link to={post.frontmatter.path}>
+                    <Card
+                      image={
+                        post.frontmatter.img.childImageSharp.responsiveSizes.src
+                      }
+                      category="Web Development"
+                      date={post.frontmatter.date}
+                      title={post.frontmatter.title}
+                      description={post.excerpt}
+                    />
+                  </Link>
+                </Box>
+              );
+            })}
         </Flex>
 
         {/* <Flex justify="center">
@@ -49,3 +49,31 @@ const Blog = () => {
 };
 
 export default Blog;
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          excerpt(pruneLength: 250)
+          id
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+            path
+            category
+            img {
+              childImageSharp {
+                responsiveSizes(maxWidth: 400) {
+                  src
+                  srcSet
+                  sizes
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
