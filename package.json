@@ -6,8 +6,14 @@
   "dependencies": {
     "gatsby": "^1.9.99",
     "gatsby-link": "^1.6.24",
+    "gatsby-plugin-catch-links": "^1.0.9",
     "gatsby-plugin-react-helmet": "^1.0.8",
+    "gatsby-plugin-sharp": "^1.6.20",
     "gatsby-plugin-styled-components": "^1.0.5",
+    "gatsby-remark-prismjs": "^1.2.9",
+    "gatsby-source-filesystem": "^1.5.8",
+    "gatsby-transformer-remark": "^1.7.20",
+    "gatsby-transformer-sharp": "^1.6.13",
     "grid-styled": "^2.0.0-11",
     "hedron": "^0.7.1"
   },

@@ -8,6 +8,7 @@ const NavContainer = StyledContainer.extend`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
 `;
 
 const NavItem = styled.li`
@@ -26,13 +27,20 @@ const StyledHeader = styled.header`
   margin-top: 80px;
 `;
 
+const Logo = styled.img`
+  width: 80px;
+  @media screen and (max-width: 480px) {
+    margin-bottom: 2em;
+  }
+`;
+
 export default props => {
   return (
     <StyledHeader>
       <NavContainer>
         <div id="logo-wrapper">
           <Link to="/">
-            <img style={{ width: "80px" }} src={logo} alt="logo" />
+            <Logo src={logo} alt="logo" />
           </Link>
         </div>
         <nav id="main-nav">

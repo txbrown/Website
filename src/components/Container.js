@@ -3,11 +3,11 @@ import React from "react";
 
 export const StyledContainer = styled.div`
   padding: 0;
-  margin: 0 80px;
-  max-width: 1200px;
+  margin: 0 auto;
+  max-width: 720px;
 
   @media screen and (max-width: 480px) {
-    margin: 0 auto;
+    margin: 0 40px;
   }
 `;
 
