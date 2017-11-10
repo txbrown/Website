@@ -65,31 +65,58 @@ const MoreButton = styled.a`
   }
 `;
 
-const IndexPage = () => (
-  <Container>
-    <ProfileSection>
-      <SiteTile style={{}}>Ricardo Abreu</SiteTile>
-      <Intro>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
-        massa sit amet ante vehicula tempor non eu orci.
-      </Intro>
-    </ProfileSection>
+const IndexPage = ({ data }) => {
+  const { edges: posts } = data.allMarkdownRemark;
 
-    <Section>
-      <Title>Projects</Title>
+  return (
+    <Container>
+      <ProfileSection>
+        <SiteTile style={{}}>Ricardo Abreu</SiteTile>
+        <Intro>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
+          massa sit amet ante vehicula tempor non eu orci.
+        </Intro>
+      </ProfileSection>
 
-      <ProjectList />
-      <Flex justify="center">
-        <Box>
-          <MoreButton href="projects">All projects</MoreButton>
-        </Box>
-      </Flex>
-    </Section>
+      <Section>
+        <Title>Projects</Title>
 
-    <Section>
-      <Title>Blog Posts</Title>
-      <Flex wrap>
-        <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 0, 0, 0]} pr={[2]}>
+        <ProjectList />
+        <Flex justify="center">
+          <Box>
+            <MoreButton href="projects">All projects</MoreButton>
+          </Box>
+        </Flex>
+      </Section>
+
+      <Section>
+        <Title>Blog Posts</Title>
+        <Flex wrap>
+          {posts
+            .filter(post => post.node.frontmatter.title.length > 0)
+            .map(({ node: post }) => {
+              return (
+                <Box
+                  width={[1, 1 / 2, 1 / 2, 1 / 2]}
+                  mb={[2, 0, 0, 0]}
+                  pr={[2]}
+                  key={post.id}
+                >
+                  <Link to={post.frontmatter.path}>
+                    <Card
+                      image={
+                        post.frontmatter.img.childImageSharp.responsiveSizes.src
+                      }
+                      category="Web Development"
+                      date={post.frontmatter.date}
+                      title={post.frontmatter.title}
+                      description={post.excerpt}
+                    />
+                  </Link>
+                </Box>
+              );
+            })}
+          {/* <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 0, 0, 0]} pr={[2]}>
           <Link>
             <Card
               image={blog1Image}
@@ -114,18 +141,46 @@ const IndexPage = () => (
             ac sem mollis, porta ante ac, porta tortor."
             />
           </Link>
-        </Box>
-      </Flex>
+        </Box> */}
+        </Flex>
 
-      <Flex justify="center">
-        <Box>
-          <Link>
-            <MoreButton href="blog">Read all</MoreButton>
-          </Link>
-        </Box>
-      </Flex>
-    </Section>
-  </Container>
-);
+        <Flex justify="center">
+          <Box>
+            <Link>
+              <MoreButton href="blog">Read all</MoreButton>
+            </Link>
+          </Box>
+        </Flex>
+      </Section>
+    </Container>
+  );
+};
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+  query BlogsQuery {
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          excerpt(pruneLength: 250)
+          id
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+            path
+            img {
+              childImageSharp {
+                responsiveSizes(maxWidth: 400) {
+                  src
+                  srcSet
+                  sizes
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
