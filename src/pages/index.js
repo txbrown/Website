@@ -4,12 +4,11 @@ import Container from "../components/Container";
 import JumboTitle from "../components/JumboTitle";
 import styled from "styled-components";
 import Title from "../components/Title";
-import photoCanvasImage from "../assets/images/project_1.png";
-import cardsMenuConcept from "../assets/images/project_2.png";
 import blog1Image from "../assets/images/blog_post_1.png";
 import Card from "../components/Card";
 import ProjectCard from "../components/ProjectCard";
 import { Flex, Box } from "grid-styled";
+import ProjectList from "../components/ProjectList";
 
 const SiteTile = JumboTitle.extend`
   ::after {
@@ -35,17 +34,6 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   margin-bottom: 6.7em;
-`;
-
-const ProjectList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-bottom: 2em;
-`;
-
-const Item = styled.li`
-  width: 50%;
 `;
 
 const MoreButton = styled.a`
@@ -90,22 +78,7 @@ const IndexPage = () => (
     <Section>
       <Title>Projects</Title>
 
-      <ProjectList>
-        <Item>
-          <ProjectCard
-            image={photoCanvasImage}
-            title="PhotoCanvas - UWP"
-            highlightcColor="#ffeb5c"
-          />
-        </Item>
-        <Item>
-          <ProjectCard
-            image={cardsMenuConcept}
-            title="Cards Menu Concept"
-            highlightcColor="#33D399"
-          />
-        </Item>
-      </ProjectList>
+      <ProjectList />
       <Flex justify="center">
         <Box>
           <MoreButton href="projects">All projects</MoreButton>
@@ -115,34 +88,40 @@ const IndexPage = () => (
 
     <Section>
       <Title>Blog Posts</Title>
-      <Flex>
-        <Box width={1 / 2} mr={2}>
-          <Card
-            image={blog1Image}
-            category="Web Development"
-            date="24 October 2016"
-            title="Blog Post 1"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+      <Flex wrap>
+        <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 0, 0, 0]} pr={[2]}>
+          <Link>
+            <Card
+              image={blog1Image}
+              category="Web Development"
+              date="24 October 2016"
+              title="Blog Post 1"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
                 mattis urna vitae ipsum vulputate congue id ac nibh. Curabitur
                 ac sem mollis, porta ante ac, porta tortor."
-          />
+            />
+          </Link>
         </Box>
-        <Box width={1 / 2}>
-          <Card
-            image={blog1Image}
-            category="Web Development"
-            date="24 October 2016"
-            title="Blog Post 1"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+        <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} pr={[2]}>
+          <Link>
+            <Card
+              image={blog1Image}
+              category="Web Development"
+              date="24 October 2016"
+              title="Blog Post 1"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
             mattis urna vitae ipsum vulputate congue id ac nibh. Curabitur
             ac sem mollis, porta ante ac, porta tortor."
-          />
+            />
+          </Link>
         </Box>
       </Flex>
 
       <Flex justify="center">
         <Box>
-          <MoreButton href="blog">Read all</MoreButton>
+          <Link>
+            <MoreButton href="blog">Read all</MoreButton>
+          </Link>
         </Box>
       </Flex>
     </Section>
