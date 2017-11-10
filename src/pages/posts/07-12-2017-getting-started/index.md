@@ -1,7 +1,7 @@
 ---
-path: "/hello-world"
+path: "/first-post"
 date: "2017-07-12T17:12:33.962Z"
-title: "My First Gatsby Post"
+title: "My First Post"
 img: "./blog_post_1.png"
 category : "Web Development"
 ---
