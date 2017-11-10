@@ -20,6 +20,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               date
               path
               title
+              category
               img {
                 childImageSharp {
                   responsiveSizes(maxWidth: 400) {

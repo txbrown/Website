@@ -61,6 +61,7 @@ export const pageQuery = graphql`
             title
             date(formatString: "MMMM DD, YYYY")
             path
+            category
             img {
               childImageSharp {
                 responsiveSizes(maxWidth: 400) {
