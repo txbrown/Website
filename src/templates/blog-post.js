@@ -12,6 +12,18 @@ const ImageBox = styled(Box)`
 
 const BlogPostContainer = styled.div`margin-bottom 6.7em;`;
 
+const Metadata = styled.div`
+  margin-bottom: 1.1em;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Category = styled.span``;
+
+const CardDate = styled.time`
+  color: ${props => props.theme.colorLightGrey};
+`;
+
 export default function Template({
   data // this prop will be injected by the GraphQL query we'll write in a bit
 }) {
@@ -32,6 +44,12 @@ export default function Template({
       </Flex>
       <Flex justify="center">
         <Container>
+          <Metadata>
+            <Category>{post.frontmatter.category}</Category>
+            <CardDate dateTime={post.frontmatter.date}>
+              {post.frontmatter.date}
+            </CardDate>
+          </Metadata>
           <div
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: post.html }}
@@ -50,6 +68,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+        category
       }
     }
   }
