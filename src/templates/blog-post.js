@@ -5,7 +5,7 @@ import { Flex, Box } from "grid-styled";
 import styled from "styled-components";
 import Container from "../components/Container";
 const ImageBox = styled(Box)`
-  background: url("http://codenakama.azurewebsites.net/media/1010/blog-post-1.png");
+  background: url(${props => props.image});
   background-size: cover;
   height: 20em;
 `;
@@ -38,9 +38,11 @@ export default function Template({
         </Container>
       </Flex>
       <Flex>
-        <ImageBox width={1} mb={4}>
-          />
-        </ImageBox>
+        <ImageBox
+          width={1}
+          mb={4}
+          image={post.frontmatter.img.childImageSharp.responsiveSizes.src}
+        />
       </Flex>
       <Flex justify="center">
         <Container>
@@ -69,6 +71,15 @@ export const pageQuery = graphql`
         path
         title
         category
+        img {
+          childImageSharp {
+            responsiveSizes(maxWidth: 400) {
+              src
+              srcSet
+              sizes
+            }
+          }
+        }
       }
     }
   }
