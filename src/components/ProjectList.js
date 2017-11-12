@@ -13,7 +13,7 @@ const ProjectList = () => {
           <ProjectCard
             image={photoCanvasImage}
             title="PhotoCanvas - UWP"
-            highlightcColor="#ffeb5c"
+            highlightColor="#ffeb5c"
           />
         </Link>
       </Box>
@@ -22,7 +22,7 @@ const ProjectList = () => {
           <ProjectCard
             image={cardsMenuConcept}
             title="Cards Menu Concept"
-            highlightcColor="#33D399"
+            highlightColor="#33D399"
           />
         </Link>
       </Box>
@@ -31,7 +31,7 @@ const ProjectList = () => {
           <ProjectCard
             image={cardsMenuConcept}
             title="Cards Menu Concept"
-            highlightcColor="#33D399"
+            highlightColor="#33D399"
           />
         </Link>
       </Box>
@@ -40,7 +40,7 @@ const ProjectList = () => {
           <ProjectCard
             image={cardsMenuConcept}
             title="Cards Menu Concept"
-            highlightcColor="#33D399"
+            highlightColor="#33D399"
           />
         </Link>
       </Box>

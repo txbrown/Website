@@ -20,6 +20,9 @@ const Cover = styled.div`
   transition: opacity 0.5s ease-out,
     transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1),
     -webkit-transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  ${Wrapper}:hover & {
+    opacity: 1;
+  }
 `;
 
 const Title = styled.h3`
@@ -37,7 +40,9 @@ const ProjectCard = props => {
     <Wrapper>
       <Image src={image} alt="" />
 
-      <Title>{title}</Title>
+      <Cover background={highlightColor}>
+        <Title>{title}</Title>
+      </Cover>
     </Wrapper>
   );
 };
