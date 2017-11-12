@@ -27,8 +27,15 @@ const TemplateWrapper = ({ children }) => (
     <Helmet
       title="Codenakama"
       meta={[
-        { name: "description", content: "Sample" },
-        { name: "keywords", content: "sample, something" }
+        {
+          name: "description",
+          content: "Software developer building web and mobile apps"
+        },
+        {
+          name: "keywords",
+          content:
+            "developer, software, music, blogging, mobile development, web development, reactjs"
+        }
       ]}
     >
       <link
