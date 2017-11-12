@@ -21,7 +21,12 @@ const Blog = ({ data }) => {
             .filter(post => post.node.frontmatter.title.length > 0)
             .map(({ node: post }) => {
               return (
-                <Box width={1 / 2} mr={2}>
+                <Box
+                  width={[1, 1 / 2, 1 / 2, 1 / 2]}
+                  mb={[2, 0, 0, 0]}
+                  pr={[0, 2, 2, 2]}
+                  key={post.id}
+                >
                   <Link to={post.frontmatter.path}>
                     <Card
                       image={

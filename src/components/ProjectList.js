@@ -8,7 +8,7 @@ import Link from "gatsby-link";
 const ProjectList = () => {
   return (
     <Flex wrap>
-      <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 2, 2, 2]} pr={[2]}>
+      <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 2, 2, 2]} pr={[0, 2, 2, 2]}>
         <Link>
           <ProjectCard
             image={photoCanvasImage}
@@ -17,7 +17,7 @@ const ProjectList = () => {
           />
         </Link>
       </Box>
-      <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 2, 2, 2]} pr={[2]}>
+      <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 2, 2, 2]} pr={[0, 2, 2, 2]}>
         <Link>
           <ProjectCard
             image={cardsMenuConcept}
@@ -26,7 +26,7 @@ const ProjectList = () => {
           />
         </Link>
       </Box>
-      <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 2, 2, 2]} pr={[2]}>
+      <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 2, 2, 2]} pr={[0, 2, 2, 2]}>
         <Link>
           <ProjectCard
             image={cardsMenuConcept}
@@ -35,7 +35,7 @@ const ProjectList = () => {
           />
         </Link>
       </Box>
-      <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 2, 2, 2]} pr={[2]}>
+      <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 2, 2, 2]} pr={[0, 2, 2, 2]}>
         <Link>
           <ProjectCard
             image={cardsMenuConcept}

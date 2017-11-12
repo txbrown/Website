@@ -99,7 +99,7 @@ const IndexPage = ({ data }) => {
                 <Box
                   width={[1, 1 / 2, 1 / 2, 1 / 2]}
                   mb={[2, 0, 0, 0]}
-                  pr={[2]}
+                  pr={[0, 2, 2, 2]}
                   key={post.id}
                 >
                   <Link to={post.frontmatter.path}>
