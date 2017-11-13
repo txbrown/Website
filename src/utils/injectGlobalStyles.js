@@ -86,8 +86,14 @@ p:last-child{
 	margin-bottom: 0;
 }
 
-p a{
+p a, .blog-post-content a{
 	color: #33d399;
+}
+
+.blog-post-content ul {
+	list-style: disc;
+	padding-left: 2em;
+	margin-bottom: 1em;
 }
 
 blockquote{
