@@ -31,7 +31,7 @@ const ProjectList = props => {
       </Flex>
     );
   } else {
-    <div>No projects found.</div>;
+    return <div>No projects found.</div>;
   }
 };
 

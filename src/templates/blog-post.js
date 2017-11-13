@@ -41,7 +41,11 @@ export default function Template({
         <ImageBox
           width={1}
           mb={4}
-          image={post.frontmatter.img.childImageSharp.responsiveSizes.src}
+          image={
+            post.frontmatter.img
+              ? post.frontmatter.img.childImageSharp.responsiveSizes.src
+              : null
+          }
         />
       </Flex>
       <Flex justify="center">

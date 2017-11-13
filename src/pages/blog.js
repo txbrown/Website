@@ -30,7 +30,10 @@ const Blog = ({ data }) => {
                   <Link to={post.frontmatter.path}>
                     <Card
                       image={
-                        post.frontmatter.img.childImageSharp.responsiveSizes.src
+                        post.frontmatter.img
+                          ? post.frontmatter.img.childImageSharp.responsiveSizes
+                              .src
+                          : null
                       }
                       category="Web Development"
                       date={post.frontmatter.date}
