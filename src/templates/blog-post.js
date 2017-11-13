@@ -25,9 +25,7 @@ const CardDate = styled.time`
   color: ${props => props.theme.colorLightGrey};
 `;
 
-export default function Template({
-  data // this prop will be injected by the GraphQL query we'll write in a bit
-}) {
+export default function Template({ data, location }) {
   const { markdownRemark: post } = data; // data.markdownRemark holds our post data
   const domain = "https://itsricardo.com";
   return (

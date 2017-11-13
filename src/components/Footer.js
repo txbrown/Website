@@ -29,7 +29,7 @@ const Footer = () => {
       <Container>
         <Content>
           <div className="copyrights">
-            <p>© {year} CodeNakama</p>
+            <p>© {year} Ricardo Abreu</p>
           </div>
 
           <LinksList>

@@ -28,7 +28,7 @@ const TemplateWrapper = ({ children, location, data }) => {
   return (
     <div>
       <Helmet
-        title="Codenakama"
+        title="Ricardo Abreu"
         meta={[
           {
             name: "description",
