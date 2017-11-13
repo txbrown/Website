@@ -4,6 +4,7 @@ import Title from "../components/Title";
 import { Flex, Box } from "grid-styled";
 import styled from "styled-components";
 import Container from "../components/Container";
+import logo from "../assets/images/logo.png";
 const ImageBox = styled(Box)`
   background: url(${props => props.image});
   background-size: cover;
@@ -28,10 +29,53 @@ export default function Template({
   data // this prop will be injected by the GraphQL query we'll write in a bit
 }) {
   const { markdownRemark: post } = data; // data.markdownRemark holds our post data
-  console.log(data);
+  const domain = "https://itsricardo.com";
   return (
     <BlogPostContainer>
-      <Helmet title={`Ricardo Abreu - ${post.frontmatter.title}`} />
+      <Helmet
+        title={`Ricardo Abreu - ${post.frontmatter.title}`}
+        meta={[
+          {
+            property: "og:title",
+            content: `${post.frontmatter.title}`
+          },
+          {
+            property: "og:description",
+            content: `${post.excerpt}`
+          },
+          {
+            property: "og:image",
+            content: `${post.frontmatter.img.childImageSharp.responsiveSizes
+              .src}`
+          },
+          {
+            property: "og:url",
+            content: `${domain + location.pathname}`
+          },
+          {
+            name: "twitter:title",
+            content: `${post.frontmatter.title}`
+          },
+          {
+            name: "twitter:description",
+            content: `${post.excerpt}`
+          },
+          {
+            name: "twitter:image",
+            content: `${post.frontmatter.img.childImageSharp.responsiveSizes
+              .src}`
+          },
+          {
+            name: "twitter:url",
+            content: `${domain + location.pathname}`
+          },
+          {
+            name: "twitter:card",
+            content: `${logo}`
+          }
+        ]}
+      />
+
       <Flex justify="center">
         <Container>
           <Title>{post.frontmatter.title}</Title>

@@ -10,7 +10,7 @@ const Header = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 1.1em;
+  padding: 1em 0;
 `;
 
 const Metadata = styled.div`

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/images/codenakama.png";
+import logo from "../assets/images/logo.svg";
 import { StyledContainer } from "./Container";
 import styled from "styled-components";
 import Link from "./Link";

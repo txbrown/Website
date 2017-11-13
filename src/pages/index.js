@@ -91,7 +91,7 @@ const IndexPage = ({ data }) => {
           )}
         />
         <Flex justify="center">
-          <Box>
+          <Box mt={4}>
             <MoreButton href="projects">All projects</MoreButton>
           </Box>
         </Flex>
@@ -134,7 +134,7 @@ const IndexPage = ({ data }) => {
         </Flex>
 
         <Flex justify="center">
-          <Box>
+          <Box mt={4}>
             <Link>
               <MoreButton href="blog">Read all</MoreButton>
             </Link>

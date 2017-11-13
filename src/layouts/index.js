@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { injectGlobalStyles } from "../utils/injectGlobalStyles";
 import Header from "../components/Header";
 import { ThemeProvider } from "styled-components";
+import logo from "../assets/images/logo.png";
 
 const theme = {
   colorPrimary: "#33d399",
@@ -22,48 +23,93 @@ const theme = {
 
 // injectGlobalStyles();
 
-const TemplateWrapper = ({ children }) => (
-  <div>
-    <Helmet
-      title="Codenakama"
-      meta={[
-        {
-          name: "description",
-          content: "Software developer building web and mobile apps"
-        },
-        {
-          name: "keywords",
-          content:
-            "developer, software, music, blogging, mobile development, web development, reactjs"
-        }
-      ]}
-    >
-      <link
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-        crossorigin="anonymous"
-      />
+const TemplateWrapper = ({ children, location, data }) => {
+  const domain = "https://itsricardo.com";
+  return (
+    <div>
+      <Helmet
+        title="Codenakama"
+        meta={[
+          {
+            name: "description",
+            content: "Software developer building web and mobile apps"
+          },
+          {
+            name: "keywords",
+            content:
+              "developer, software, music, blogging, mobile development, web development, reactjs"
+          }
+        ]}
+      >
+        <link
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous"
+        />
 
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Open+Sans"
-      />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans"
+        />
 
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Lato "
-      />
-    </Helmet>
-    <ThemeProvider theme={theme}>
-      <div>
-        <Header />
-        {children()}
-        <Footer />
-      </div>
-    </ThemeProvider>
-  </div>
-);
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato "
+        />
+      </Helmet>
+      {location.pathname === "/" && (
+        <Helmet
+          meta={[
+            {
+              property: "og:title",
+              content: "Ricardo Abreu"
+            },
+            {
+              property: "og:description",
+              content: "Software developer building web and mobile apps"
+            },
+            {
+              property: "og:image",
+              content: `${logo}`
+            },
+            {
+              property: "og:url",
+              content: `${domain + location.pathname}`
+            },
+            {
+              name: "twitter:title",
+              content: "Ricardo Abreu"
+            },
+            {
+              name: "twitter:description",
+              content: "Software developer building web and mobile apps"
+            },
+            {
+              name: "twitter:image",
+              content: `${logo}`
+            },
+            {
+              name: "twitter:url",
+              content: `${domain + location.pathname}`
+            },
+            {
+              name: "twitter:card",
+              content: `${logo}`
+            }
+          ]}
+        />
+      )}
+      <ThemeProvider theme={theme}>
+        <div>
+          <Header />
+          {children()}
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </div>
+  );
+};
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func
