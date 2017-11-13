@@ -19,7 +19,15 @@ module.exports = {
     {
       resolve: "gatsby-transformer-remark",
       options: {
-        plugins: [`gatsby-remark-prismjs`] // just in case those previously mentioned remark plugins sound cool :)
+        plugins: [`gatsby-remark-prismjs`, `gatsby-remark-responsive-iframe`]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-109653886-1",
+        // Setting this parameter is optional
+        anonymize: true
       }
     }
   ]
