@@ -22,7 +22,6 @@ const SiteTile = JumboTitle.extend`
 
 const Intro = styled.div`
   color: #bdbdbd;
-  width: 50%;
 `;
 
 const ProfileSection = styled.section`
@@ -67,21 +66,28 @@ const MoreButton = styled.a`
 
 const IndexPage = ({ data }) => {
   const { edges: posts } = data.allMarkdownRemark;
-
   return (
     <Container>
       <ProfileSection>
         <SiteTile style={{}}>Ricardo Abreu</SiteTile>
         <Intro>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
-          massa sit amet ante vehicula tempor non eu orci.
+          I consider myself a creative person. I am truly passionate about web
+          and mobile development and have always loved the internet and how
+          everything gets connected to make complex interactions look easy and
+          seamless.
         </Intro>
       </ProfileSection>
 
       <Section>
         <Title>Projects</Title>
 
-        <ProjectList />
+        <ProjectList
+          projects={posts.filter(
+            post =>
+              post.node.frontmatter.title.length > 0 &&
+              post.node.frontmatter.type === "project"
+          )}
+        />
         <Flex justify="center">
           <Box>
             <MoreButton href="projects">All projects</MoreButton>
@@ -93,7 +99,11 @@ const IndexPage = ({ data }) => {
         <Title>Blog Posts</Title>
         <Flex wrap>
           {posts
-            .filter(post => post.node.frontmatter.title.length > 0)
+            .filter(
+              post =>
+                post.node.frontmatter.title.length > 0 &&
+                post.node.frontmatter.type === "blog"
+            )
             .map(({ node: post }) => {
               return (
                 <Box
@@ -116,32 +126,6 @@ const IndexPage = ({ data }) => {
                 </Box>
               );
             })}
-          {/* <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} mb={[2, 0, 0, 0]} pr={[2]}>
-          <Link>
-            <Card
-              image={blog1Image}
-              category="Web Development"
-              date="24 October 2016"
-              title="Blog Post 1"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                mattis urna vitae ipsum vulputate congue id ac nibh. Curabitur
-                ac sem mollis, porta ante ac, porta tortor."
-            />
-          </Link>
-        </Box>
-        <Box width={[1, 1 / 2, 1 / 2, 1 / 2]} pr={[2]}>
-          <Link>
-            <Card
-              image={blog1Image}
-              category="Web Development"
-              date="24 October 2016"
-              title="Blog Post 1"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-            mattis urna vitae ipsum vulputate congue id ac nibh. Curabitur
-            ac sem mollis, porta ante ac, porta tortor."
-            />
-          </Link>
-        </Box> */}
         </Flex>
 
         <Flex justify="center">
@@ -169,6 +153,8 @@ export const pageQuery = graphql`
             title
             date(formatString: "MMMM DD, YYYY")
             path
+            type
+            highlightColor
             img {
               childImageSharp {
                 responsiveSizes(maxWidth: 400) {

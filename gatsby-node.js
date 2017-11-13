@@ -21,6 +21,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               path
               title
               category
+              type
+              highlightColor
               img {
                 childImageSharp {
                   responsiveSizes(maxWidth: 400) {

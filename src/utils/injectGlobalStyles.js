@@ -79,6 +79,22 @@ a {
 
 p{
 	line-height: 30.4px;
+	margin-bottom: 1em;
+}
+
+p:last-child{
+	margin-bottom: 0;
+}
+
+p a{
+	color: #33d399;
+}
+
+blockquote{
+	padding: 0 1em;
+	color: #bdbdbd;
+	border-left: 0.25em solid #f2f2f2;
+	margin-bottom: 1em;
 }
 
 

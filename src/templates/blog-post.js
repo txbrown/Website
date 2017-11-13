@@ -31,7 +31,7 @@ export default function Template({
   console.log(data);
   return (
     <BlogPostContainer>
-      <Helmet title={`Your Blog Name - ${post.frontmatter.title}`} />
+      <Helmet title={`Ricardo Abreu - ${post.frontmatter.title}`} />
       <Flex justify="center">
         <Container>
           <Title>{post.frontmatter.title}</Title>
