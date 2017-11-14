@@ -24,7 +24,7 @@ Now with all that said here are my favorite extensions:
 
 ## Code editing helpers
 
-- [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag) ❤️
+- [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag) :heart:
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 - [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
 - [HTML Snippets](https://marketplace.visualstudio.com/items?itemName=abusaidm.html-snippets)
@@ -36,7 +36,7 @@ Now with all that said here are my favorite extensions:
 
 - [Path intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) ❤️ - no more fussing with indentations, brackets, commas, etc.
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) :heart: - no more fussing with indentations, brackets, commas, etc.
 - [Copy Relative Path](https://marketplace.visualstudio.com/items?itemName=alexdima.copy-relative-path)
 
 
