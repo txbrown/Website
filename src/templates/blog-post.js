@@ -112,7 +112,7 @@ export default function Template({ data, location }) {
               category_id="2020677"
               identifier={post.frontmatter.title.replace(" ", "-")}
               title={post.frontmatter.title}
-              url={"itsricardo.com" + post.frontmatter.path}
+              url={"itsricardo.com"}
               onNewComment={handleNewComment}
             />
           </Box>
