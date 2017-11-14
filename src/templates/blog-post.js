@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-import ReactDisqusThread from "react-disqus-thread";
+import ReactDisqusComments from "react-disqus-comments";
 import Title from "../components/Title";
 import { Flex, Box } from "grid-styled";
 import styled from "styled-components";
@@ -107,12 +107,12 @@ export default function Template({ data, location }) {
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
           <Box mt={4}>
-            <ReactDisqusThread
-              shortname={post.frontmatter.title}
-              identifier={post.frontmatter.path + post.frontmatter.date}
+            <ReactDisqusComments
+              shortname="itsricardo"
+              identifier={post.frontmatter.path.replace("/", "")}
               title={post.frontmatter.title}
-              url={post.frontmatter.path}
-              category_id="123456"
+              url={domain + post.frontmatter.path}
+              category_id="2020677"
               onNewComment={handleNewComment}
             />
           </Box>

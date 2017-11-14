@@ -19,6 +19,7 @@
     "gatsby-transformer-sharp": "^1.6.13",
     "grid-styled": "^2.0.0-11",
     "hedron": "^0.7.1",
+    "react-disqus-comments": "^1.1.1",
     "react-disqus-thread": "^0.4.0"
   },
   "keywords": [
