@@ -10,14 +10,24 @@ import ProjectList from "../components/ProjectList";
 import photoCanvasImage from "../assets/images/project_1.png";
 import cardsMenuConcept from "../assets/images/project_2.png";
 
-const Projects = () => (
-  <Container>
-    <Section>
-      <Title>Projects</Title>
+const Projects = ({ data }) => {
+  const { edges: posts } = data.allMarkdownRemark;
 
-      <ProjectList />
-    </Section>
-  </Container>
-);
+  return (
+    <Container>
+      <Section>
+        <Title>Projects</Title>
+
+        <ProjectList
+          projects={posts.filter(
+            post =>
+              post.node.frontmatter.title.length > 0 &&
+              post.node.frontmatter.type === "project"
+          )}
+        />
+      </Section>
+    </Container>
+  );
+};
 
 export default Projects;

@@ -18,7 +18,11 @@ const Blog = ({ data }) => {
         <Title>Blog Posts</Title>
         <Flex>
           {posts
-            .filter(post => post.node.frontmatter.title.length > 0)
+            .filter(
+              post =>
+                post.node.frontmatter.title.length > 0 &&
+                post.node.frontmatter.type === "blog"
+            )
             .map(({ node: post }) => {
               return (
                 <Box
@@ -70,6 +74,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             path
             category
+            type
             img {
               childImageSharp {
                 responsiveSizes(maxWidth: 400) {

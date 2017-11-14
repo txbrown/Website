@@ -67,7 +67,6 @@ const MoreButton = styled.a`
 const IndexPage = ({ data }) => {
   const { edges: posts } = data.allMarkdownRemark;
 
-  console.log(posts);
   return (
     <Container>
       <ProfileSection>
