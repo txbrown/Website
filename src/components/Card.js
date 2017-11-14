@@ -4,9 +4,10 @@ import styled from "styled-components";
 const Wrapper = styled.div``;
 
 const Header = styled.div`
-  img {
-    width: 100%;
-  }
+  height: 220px;
+  background: lightgrey;
+  background: url(${props => props.image});
+  background-size: cover;
 `;
 
 const Content = styled.div`
@@ -44,9 +45,7 @@ const Card = props => {
   const { children, description, title, date, image, category } = props;
   return (
     <Wrapper>
-      <Header>
-        <img src={image} alt="" />
-      </Header>
+      <Header image={image} />
       <Content>
         <Metadata>
           <Category>{category}</Category>

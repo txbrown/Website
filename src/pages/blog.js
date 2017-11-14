@@ -16,7 +16,7 @@ const Blog = ({ data }) => {
     <Container>
       <Section>
         <Title>Blog Posts</Title>
-        <Flex>
+        <Flex wrap>
           {posts
             .filter(
               post =>

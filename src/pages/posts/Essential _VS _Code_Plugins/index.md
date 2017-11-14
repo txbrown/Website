@@ -1,8 +1,8 @@
 ---
 path: "/my-vscode-plugins"
 date: "2017-11-13"
-title: "My Essential Visual Studio Code Extensions "
-img: "./blog_post_1.png"
+title: "My Essential Visual Studio Code Extensions"
+img: "./vs_code.png"
 category : "Web Development"
 type : "blog"
 ---

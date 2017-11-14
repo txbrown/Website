@@ -31,3 +31,32 @@ const Projects = ({ data }) => {
 };
 
 export default Projects;
+
+export const pageQuery = graphql`
+  query ProjectsQuery {
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          excerpt(pruneLength: 250)
+          id
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+            path
+            type
+            highlightColor
+            img {
+              childImageSharp {
+                responsiveSizes(maxWidth: 400) {
+                  src
+                  srcSet
+                  sizes
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

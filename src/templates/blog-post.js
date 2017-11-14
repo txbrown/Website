@@ -1,5 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
+import ReactDisqusThread from "react-disqus-thread";
 import Title from "../components/Title";
 import { Flex, Box } from "grid-styled";
 import styled from "styled-components";
@@ -25,9 +26,12 @@ const CardDate = styled.time`
   color: ${props => props.theme.colorLightGrey};
 `;
 
+const handleNewComment = () => {};
+
 export default function Template({ data, location }) {
   const { markdownRemark: post } = data; // data.markdownRemark holds our post data
   const domain = "https://itsricardo.com";
+  console.log(data);
   return (
     <BlogPostContainer>
       <Helmet
@@ -102,6 +106,16 @@ export default function Template({ data, location }) {
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+          <Box mt={4}>
+            <ReactDisqusThread
+              shortname={post.frontmatter.title}
+              identifier={post.frontmatter.path + post.frontmatter.date}
+              title={post.frontmatter.title}
+              url={post.frontmatter.path}
+              category_id="123456"
+              onNewComment={handleNewComment}
+            />
+          </Box>
         </Container>
       </Flex>
     </BlogPostContainer>
