@@ -109,10 +109,10 @@ export default function Template({ data, location }) {
           <Box mt={4}>
             <ReactDisqusComments
               shortname="itsricardo"
-              identifier={post.frontmatter.path.replace("/", "")}
-              title={post.frontmatter.title}
-              url={domain + post.frontmatter.path}
               category_id="2020677"
+              identifier={post.frontmatter.title.replace(" ", "-")}
+              title={post.frontmatter.title}
+              url={"itsricardo.com" + post.frontmatter.path}
               onNewComment={handleNewComment}
             />
           </Box>
