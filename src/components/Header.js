@@ -56,7 +56,9 @@ export default props => {
               </Link>
             </NavItem>
             <NavItem>
-              <Link to="mailto:mail@mail.com">Contact</Link>
+              <a href="mailto:itsricardo.contact@gmail.com?subject=Hi">
+                Contact
+              </a>
             </NavItem>
           </NavList>
         </nav>
