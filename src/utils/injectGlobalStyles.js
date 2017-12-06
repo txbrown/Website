@@ -90,6 +90,10 @@ p a, .blog-post-content a{
 	color: #33d399;
 }
 
+.blog-post-content img{
+	max-width: 100%;
+}
+
 .blog-post-content ul {
 	list-style: disc;
 	padding-left: 2em;
