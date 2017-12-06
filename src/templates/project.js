@@ -29,7 +29,7 @@ const CardDate = styled.time`
 const handleNewComment = () => {};
 
 export default function Template({ data, location }) {
-  const { contentfulBlogPost: post } = data;
+  const { contentfulProject: post } = data;
   const domain = "https://itsricardo.com";
   console.log(data);
   return (
@@ -117,8 +117,8 @@ export default function Template({ data, location }) {
 }
 
 export const pageQuery = graphql`
-  query BlogPost($id: String!) {
-    contentfulBlogPost(id: { eq: $id }) {
+  query Project($id: String!) {
+    contentfulProject(id: { eq: $id }) {
       title
       excerpt
       slug

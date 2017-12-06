@@ -11,20 +11,14 @@ import photoCanvasImage from "../assets/images/project_1.png";
 import cardsMenuConcept from "../assets/images/project_2.png";
 
 const Projects = ({ data }) => {
-  const { edges: posts } = data.allMarkdownRemark;
+  const { edges: projects } = data.allContentfulProject;
 
   return (
     <Container>
       <Section>
         <Title>Projects</Title>
 
-        <ProjectList
-          projects={posts.filter(
-            post =>
-              post.node.frontmatter.title.length > 0 &&
-              post.node.frontmatter.type === "project"
-          )}
-        />
+        <ProjectList projects={projects} />
       </Section>
     </Container>
   );
@@ -33,28 +27,23 @@ const Projects = ({ data }) => {
 export default Projects;
 
 export const pageQuery = graphql`
-  query ProjectsQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+  query ProjectQuery {
+    allContentfulProject(sort: { order: DESC, fields: [publishedDate] }) {
       edges {
         node {
-          excerpt(pruneLength: 250)
           id
-          frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            path
-            type
-            highlightColor
-            img {
-              childImageSharp {
-                responsiveSizes(maxWidth: 400) {
-                  src
-                  srcSet
-                  sizes
-                }
-              }
+          title
+          excerpt
+          slug
+          content {
+            content
+          }
+          bannerImage {
+            resolutions(width: 344) {
+              ...GatsbyContentfulResolutions
             }
           }
+          highlightColor
         }
       }
     }

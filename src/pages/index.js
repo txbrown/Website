@@ -65,8 +65,9 @@ const MoreButton = styled.a`
 `;
 
 const IndexPage = ({ data }) => {
-  const { edges: posts } = data.allMarkdownRemark;
-
+  console.log(data);
+  const { edges: posts } = data.allContentfulBlogPost;
+  const { edges: projects } = data.allContentfulProject;
   return (
     <Container>
       <ProfileSection>
@@ -82,13 +83,7 @@ const IndexPage = ({ data }) => {
       <Section>
         <Title>Projects</Title>
 
-        <ProjectList
-          projects={posts.filter(
-            post =>
-              post.node.frontmatter.title.length > 0 &&
-              post.node.frontmatter.type === "project"
-          )}
-        />
+        <ProjectList projects={projects} />
         <Flex justify="center">
           <Box mt={4}>
             <MoreButton href="projects">All projects</MoreButton>
@@ -99,42 +94,33 @@ const IndexPage = ({ data }) => {
       <Section>
         <Title>Blog Posts</Title>
         <Flex wrap>
-          {posts
-            .filter(
-              post =>
-                post.node.frontmatter.title.length > 0 &&
-                post.node.frontmatter.type === "blog"
-            )
-            .map(({ node: post }) => {
-              return (
-                <Box
-                  width={[1, 1 / 2, 1 / 2, 1 / 2]}
-                  mb={[2, 0, 0, 0]}
-                  pr={[0, 2, 2, 2]}
-                  key={post.id}
-                >
-                  <Link to={post.frontmatter.path}>
-                    <Card
-                      image={
-                        post.frontmatter.img
-                          ? post.frontmatter.img.childImageSharp.responsiveSizes
-                              .src
-                          : null
-                      }
-                      category="Web Development"
-                      date={post.frontmatter.date}
-                      title={post.frontmatter.title}
-                      description={post.excerpt}
-                    />
-                  </Link>
-                </Box>
-              );
-            })}
+          {posts.map(({ node: post }) => {
+            return (
+              <Box
+                width={[1, 1 / 2, 1 / 2, 1 / 2]}
+                mb={[2, 0, 0, 0]}
+                pr={[0, 2, 2, 2]}
+                key={post.id}
+              >
+                <Link to={"/blog/" + post.slug}>
+                  <Card
+                    image={
+                      post.bannerImage ? post.bannerImage.resolutions.src : null
+                    }
+                    category="Web Development"
+                    date={post.publishedDate}
+                    title={post.title}
+                    description={post.excerpt}
+                  />
+                </Link>
+              </Box>
+            );
+          })}
         </Flex>
 
         <Flex justify="center">
           <Box mt={4}>
-            <Link>
+            <Link to="blog">
               <MoreButton href="blog">Read all</MoreButton>
             </Link>
           </Box>
@@ -147,28 +133,42 @@ const IndexPage = ({ data }) => {
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query BlogsQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+  query IndexQuery {
+    allContentfulBlogPost(sort: { order: DESC, fields: [publishedDate] }) {
       edges {
         node {
-          excerpt(pruneLength: 250)
           id
-          frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            path
-            type
-            highlightColor
-            img {
-              childImageSharp {
-                responsiveSizes(maxWidth: 400) {
-                  src
-                  srcSet
-                  sizes
-                }
-              }
+          title
+          excerpt
+          publishedDate
+          slug
+          content {
+            content
+          }
+          bannerImage {
+            resolutions(width: 344) {
+              ...GatsbyContentfulResolutions
             }
           }
+        }
+      }
+    }
+    allContentfulProject(sort: { order: DESC, fields: [publishedDate] }) {
+      edges {
+        node {
+          id
+          title
+          excerpt
+          slug
+          content {
+            content
+          }
+          bannerImage {
+            resolutions(width: 344) {
+              ...GatsbyContentfulResolutions
+            }
+          }
+          highlightColor
         }
       }
     }
