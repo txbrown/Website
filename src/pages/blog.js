@@ -10,44 +10,35 @@ import Card from "../components/Card";
 import Link from "gatsby-link";
 
 const Blog = ({ data }) => {
-  const { edges: posts } = data.allMarkdownRemark;
+  const { edges: posts } = data.allContentfulBlogPost;
   console.log(data);
   return (
     <Container>
       <Section>
         <Title>Blog Posts</Title>
         <Flex wrap>
-          {posts
-            .filter(
-              post =>
-                post.node.frontmatter.title.length > 0 &&
-                post.node.frontmatter.type === "blog"
-            )
-            .map(({ node: post }) => {
-              return (
-                <Box
-                  width={[1, 1 / 2, 1 / 2, 1 / 2]}
-                  mb={[2, 0, 0, 0]}
-                  pr={[0, 2, 2, 2]}
-                  key={post.id}
-                >
-                  <Link to={post.frontmatter.path}>
-                    <Card
-                      image={
-                        post.frontmatter.img
-                          ? post.frontmatter.img.childImageSharp.responsiveSizes
-                              .src
-                          : null
-                      }
-                      category="Web Development"
-                      date={post.frontmatter.date}
-                      title={post.frontmatter.title}
-                      description={post.excerpt}
-                    />
-                  </Link>
-                </Box>
-              );
-            })}
+          {posts.map(({ node: post }) => {
+            return (
+              <Box
+                width={[1, 1 / 2, 1 / 2, 1 / 2]}
+                mb={[2, 0, 0, 0]}
+                pr={[0, 2, 2, 2]}
+                key={post.id}
+              >
+                <Link to={"blog/" + post.slug}>
+                  <Card
+                    image={
+                      post.bannerImage ? post.bannerImage.resolutions.src : null
+                    }
+                    category="Web Development"
+                    date={post.publishedDate}
+                    title={post.title}
+                    description={post.excerpt}
+                  />
+                </Link>
+              </Box>
+            );
+          })}
         </Flex>
 
         {/* <Flex justify="center">
@@ -63,26 +54,21 @@ const Blog = ({ data }) => {
 export default Blog;
 
 export const pageQuery = graphql`
-  query IndexQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+  query BlogQuery {
+    allContentfulBlogPost(sort: { order: DESC, fields: [publishedDate] }) {
       edges {
         node {
-          excerpt(pruneLength: 250)
           id
-          frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            path
-            category
-            type
-            img {
-              childImageSharp {
-                responsiveSizes(maxWidth: 400) {
-                  src
-                  srcSet
-                  sizes
-                }
-              }
+          title
+          excerpt
+          publishedDate
+          slug
+          content {
+            content
+          }
+          bannerImage {
+            resolutions(width: 344) {
+              ...GatsbyContentfulResolutions
             }
           }
         }

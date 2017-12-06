@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Image } from "../components/base/StyledComponents";
+import Img from "gatsby-image";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -38,7 +39,7 @@ const ProjectCard = props => {
 
   return (
     <Wrapper>
-      <Image src={image} alt="" />
+      <Img backgroundColor resolutions={image} alt="" />
 
       <Cover background={highlightColor}>
         <Title>{title}</Title>

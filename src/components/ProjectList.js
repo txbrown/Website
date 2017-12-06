@@ -17,13 +17,11 @@ const ProjectList = props => {
             pr={[0, 2, 2, 2]}
             key={project.id}
           >
-            <Link to={project.frontmatter.path}>
+            <Link to={"projects/" + project.slug}>
               <ProjectCard
-                image={
-                  project.frontmatter.img.childImageSharp.responsiveSizes.src
-                }
-                title={project.frontmatter.title}
-                highlightColor={project.frontmatter.highlightColor}
+                image={project.bannerImage.resolutions}
+                title={project.title}
+                highlightColor={project.highlightColor}
               />
             </Link>
           </Box>
