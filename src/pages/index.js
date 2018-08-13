@@ -1,14 +1,12 @@
-import React from "react";
 import Link from "gatsby-link";
+import { Box, Flex } from "grid-styled";
+import React from "react";
+import styled from "styled-components";
+import Card from "../components/Card";
 import Container from "../components/Container";
 import JumboTitle from "../components/JumboTitle";
-import styled from "styled-components";
-import Title from "../components/Title";
-import blog1Image from "../assets/images/blog_post_1.png";
-import Card from "../components/Card";
-import ProjectCard from "../components/ProjectCard";
-import { Flex, Box } from "grid-styled";
 import ProjectList from "../components/ProjectList";
+import Title from "../components/Title";
 
 const SiteTile = JumboTitle.extend`
   ::after {
