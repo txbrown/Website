@@ -25,22 +25,6 @@ module.exports = {
         spaceId: `n3ul8nyrm3nv`,
         accessToken: `b0793bd319079d0ac727403bdb98d2448b9b2852e730b53a5928ab6cc8781444`
       }
-    },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/src/pages`,
-    //     name: "pages"
-    //   }
-    // },
-
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: "UA-109653886-1",
-        // Setting this parameter is optional
-        anonymize: true
-      }
     }
   ]
 };
