@@ -1,8 +1,8 @@
-import styled from "styled-components";
 import React from "react";
+import styled from "styled-components";
 
 export const StyledContainer = styled.div`
-  padding: 0;
+  padding: 2rem 0;
   margin: 0 auto;
   max-width: 720px;
 

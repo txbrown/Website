@@ -1,11 +1,11 @@
-import { injectGlobal } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 const paleGrey = "#f2f2f2";
-const lightGrey = "#bdbdbd";
+const lightGrey = "#B1B0B5";
 const darkGrey = "#4f4f4f";
 const accentGreen = "#33d399";
 
-export const injectGlobalStyles = injectGlobal`
+export const GlobalStyles = createGlobalStyle`
 /* reset css */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -54,8 +54,10 @@ table {
 
 
 body {
-    font-family: "Open Sans", sans-serif;
-    font-size: 18px;
+    font-family: 'SF UI Text',-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI","Oxygen","Ubuntu","Cantarell","Open Sans",sans-serif;
+	font-size: 18px;
+	color: #020202;
+	line-height: 1.3;
   }
 
 
@@ -70,10 +72,10 @@ ul {
 }
 
 a {
-		color: #bdbdbd;
+		color: #B1B0B5;
     text-decoration: none;
     & :visited {
-			color: #bdbdbd;
+			color: #B1B0B5;
     }
   }
 
@@ -102,7 +104,7 @@ p a, .blog-post-content a{
 
 blockquote{
 	padding: 0 1em;
-	color: #bdbdbd;
+	color: #B1B0B5;
 	border-left: 0.25em solid #f2f2f2;
 	margin-bottom: 1em;
 }

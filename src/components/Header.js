@@ -1,10 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 import logo from "../assets/images/logo.svg";
 import { StyledContainer } from "./Container";
-import styled from "styled-components";
 import Link from "./Link";
 
-const NavContainer = StyledContainer.extend`
+const NavContainer = styled(StyledContainer)`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -28,7 +28,6 @@ const StyledHeader = styled.header`
 `;
 
 const Logo = styled.img`
-  width: 80px;
   @media screen and (max-width: 480px) {
     margin-bottom: 2em;
   }
@@ -39,7 +38,7 @@ export default props => {
     <StyledHeader>
       <NavContainer>
         <div id="logo-wrapper">
-          <Link to="/">
+          <Link to="/" style={{ textDecoration: "none", borderBottom: "none" }}>
             <Logo src={logo} alt="logo" />
           </Link>
         </div>

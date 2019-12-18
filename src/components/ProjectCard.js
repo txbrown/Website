@@ -1,37 +1,35 @@
+import Img from "gatsby-image";
 import React from "react";
 import styled from "styled-components";
-import { Image } from "../components/base/StyledComponents";
-import Img from "gatsby-image";
 
 const Wrapper = styled.div`
   width: 100%;
   position: relative;
   display: block;
+  height: 400px;
+  object-fit: cover;
 `;
 
-const Cover = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+const StyledImage = styled(Img)`
   width: 100%;
-  height: 100%;
-  color: #fff;
-  background: ${props => props.background};
-  opacity: 0;
-  transition: opacity 0.5s ease-out,
-    transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1),
-    -webkit-transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-  ${Wrapper}:hover & {
-    opacity: 1;
-  }
 `;
 
 const Title = styled.h3`
   position: absolute;
   bottom: 0;
   left: 1em;
-  color: #000;
+  color: #fff;
   font-size: 2em;
+  z-index: 100;
+`;
+
+const Skrim = styled.div`
+  background: black;
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
 `;
 
 const ProjectCard = props => {
@@ -39,11 +37,16 @@ const ProjectCard = props => {
 
   return (
     <Wrapper>
-      <Img backgroundColor resolutions={image} alt="" />
+      <Skrim />
+      <Img
+        backgroundColor
+        resolutions={image}
+        alt=""
+        style={{ width: "100%", height: "100%" }}
+        imgStyle={{ width: "100%", height: "100%" }}
+      />
 
-      <Cover background={highlightColor}>
-        <Title>{title}</Title>
-      </Cover>
+      <Title>{title}</Title>
     </Wrapper>
   );
 };

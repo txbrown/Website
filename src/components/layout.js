@@ -1,12 +1,13 @@
-import React from "react";
+import { ThemeProvider as ChakraThemeProvider } from "@chakra-ui/core";
 import PropTypes from "prop-types";
-import Link from "gatsby-link";
+import React from "react";
 import Helmet from "react-helmet";
-import Footer from "../components/Footer";
-import { injectGlobalStyles } from "../utils/injectGlobalStyles";
-import Header from "../components/Header";
 import { ThemeProvider } from "styled-components";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/logo.svg";
+import chakraTheme from "../theme";
+import { GlobalStyles } from "../utils/injectGlobalStyles";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const theme = {
   colorPrimary: "#33d399",
@@ -21,12 +22,12 @@ const theme = {
   defaultTransitionTime: "0.6s"
 };
 
-// injectGlobalStyles();
-
-const TemplateWrapper = ({ children, location, data }) => {
+const Layout = ({ children, location, data }) => {
   const domain = "https://itsricardo.com";
+
   return (
     <div>
+      <GlobalStyles />
       <Helmet
         title="Ricardo Abreu"
         meta={[
@@ -100,19 +101,22 @@ const TemplateWrapper = ({ children, location, data }) => {
           ]}
         />
       )}
+
       <ThemeProvider theme={theme}>
-        <div>
-          <Header />
-          {children()}
-          <Footer />
-        </div>
+        <ChakraThemeProvider theme={chakraTheme}>
+          <div>
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </ChakraThemeProvider>
       </ThemeProvider>
     </div>
   );
 };
 
-TemplateWrapper.propTypes = {
+Layout.propTypes = {
   children: PropTypes.func
 };
 
-export default TemplateWrapper;
+export default Layout;

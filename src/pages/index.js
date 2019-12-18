@@ -1,3 +1,4 @@
+import { graphql, StaticQuery } from "gatsby";
 import Link from "gatsby-link";
 import { Box, Flex } from "grid-styled";
 import React from "react";
@@ -5,10 +6,11 @@ import styled from "styled-components";
 import Card from "../components/Card";
 import Container from "../components/Container";
 import JumboTitle from "../components/JumboTitle";
+import Layout from "../components/layout";
 import ProjectList from "../components/ProjectList";
 import Title from "../components/Title";
 
-const SiteTile = JumboTitle.extend`
+const SiteTile = styled(JumboTitle)`
   ::after {
     content: " ";
     border: solid #e0e0e0 1px;
@@ -18,8 +20,8 @@ const SiteTile = JumboTitle.extend`
   }
 `;
 
-const Intro = styled.div`
-  color: #bdbdbd;
+const Intro = styled.p`
+  /* color: #bdbdbd; */
 `;
 
 const ProfileSection = styled.section`
@@ -62,75 +64,7 @@ const MoreButton = styled.a`
   }
 `;
 
-const IndexPage = ({ data }) => {
-  console.log(data);
-  const { edges: posts } = data.allContentfulBlogPost;
-  const { edges: projects } = data.allContentfulProject;
-  return (
-    <Container>
-      <ProfileSection>
-        <SiteTile style={{}}>Ricardo Abreu</SiteTile>
-        <Intro>
-          I consider myself a creative person. I am truly passionate about web
-          and mobile development and have always loved the internet and how
-          everything gets connected to make complex interactions look easy and
-          seamless.
-        </Intro>
-      </ProfileSection>
-
-      <Section>
-        <Title>Projects</Title>
-
-        <ProjectList projects={projects} />
-        <Flex justify="center">
-          <Box mt={4}>
-            <MoreButton href="projects">All projects</MoreButton>
-          </Box>
-        </Flex>
-      </Section>
-
-      <Section>
-        <Title>Blog Posts</Title>
-        <Flex wrap>
-          {posts.map(({ node: post }) => {
-            return (
-              <Box
-                width={[1, 1 / 2, 1 / 2, 1 / 2]}
-                mb={[2, 0, 0, 0]}
-                pr={[0, 2, 2, 2]}
-                key={post.id}
-              >
-                <Link to={"/blog/" + post.slug}>
-                  <Card
-                    image={
-                      post.bannerImage ? post.bannerImage.resolutions.src : null
-                    }
-                    category="Web Development"
-                    date={post.publishedDate}
-                    title={post.title}
-                    description={post.excerpt}
-                  />
-                </Link>
-              </Box>
-            );
-          })}
-        </Flex>
-
-        <Flex justify="center">
-          <Box mt={4}>
-            <Link to="blog">
-              <MoreButton href="blog">Read all</MoreButton>
-            </Link>
-          </Box>
-        </Flex>
-      </Section>
-    </Container>
-  );
-};
-
-export default IndexPage;
-
-export const pageQuery = graphql`
+const PAGE_QUERY = graphql`
   query IndexQuery {
     allContentfulBlogPost(sort: { order: DESC, fields: [publishedDate] }) {
       edges {
@@ -172,3 +106,78 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+const IndexPage = ({ data, location, history }) => {
+  return (
+    <StaticQuery
+      query={PAGE_QUERY}
+      render={data => {
+        const { edges: posts } = data.allContentfulBlogPost;
+        const { edges: projects } = data.allContentfulProject;
+        return (
+          <Layout location={location} history={history}>
+            <Container>
+              <ProfileSection>
+                <SiteTile style={{}}>Ricardo Abreu</SiteTile>
+                <Intro>
+                  I love understanding problems, solving problems, creating new
+                  things and teaching people how to do all the above.
+                </Intro>
+              </ProfileSection>
+
+              <Section>
+                <Title>Projects</Title>
+
+                <ProjectList projects={projects} />
+                <Flex justify="center">
+                  <Box mt={4}>
+                    <MoreButton href="projects">All projects</MoreButton>
+                  </Box>
+                </Flex>
+              </Section>
+
+              <Section>
+                <Title>Blog Posts</Title>
+                <Flex flexWrap="wrap">
+                  {posts.map(({ node: post }) => {
+                    return (
+                      <Box
+                        width={[1, 1 / 2, 1 / 2, 1 / 2]}
+                        mb={[2]}
+                        pr={[0, 2, 2, 2]}
+                        key={post.id}
+                      >
+                        <Link
+                          to={"/blog/" + post.slug}
+                          style={{ height: "100%", display: "block" }}
+                        >
+                          <Card
+                            image={post.bannerImage}
+                            category="Web Development"
+                            date={post.publishedDate}
+                            title={post.title}
+                            description={post.excerpt}
+                          />
+                        </Link>
+                      </Box>
+                    );
+                  })}
+                </Flex>
+
+                <Flex justify="center">
+                  <Box mt={4}>
+                    <Link to="blog">
+                      <MoreButton href="blog">Read all</MoreButton>
+                    </Link>
+                  </Box>
+                </Flex>
+              </Section>
+            </Container>
+          </Layout>
+        );
+      }}
+    />
+  );
+};
+
+export default IndexPage;

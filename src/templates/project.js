@@ -1,11 +1,11 @@
+import { Box, Flex } from "grid-styled";
 import React from "react";
 import Helmet from "react-helmet";
-import ReactDisqusComments from "react-disqus-comments";
-import Title from "../components/Title";
-import { Flex, Box } from "grid-styled";
 import styled from "styled-components";
+import logo from "../assets/images/logo.svg";
 import Container from "../components/Container";
-import logo from "../assets/images/logo.png";
+import Layout from "../components/layout";
+import Title from "../components/Title";
 const ImageBox = styled(Box)`
   background: url(${props => props.image});
   background-size: cover;
@@ -31,88 +31,80 @@ const handleNewComment = () => {};
 export default function Template({ data, location }) {
   const { contentfulProject: post } = data;
   const domain = "https://itsricardo.com";
-  console.log(data);
-  return (
-    <BlogPostContainer>
-      <Helmet
-        title={`Ricardo Abreu - ${post.title}`}
-        meta={[
-          {
-            property: "og:title",
-            content: `${post.title}`
-          },
-          {
-            property: "og:description",
-            content: `${post.excerpt}`
-          },
-          {
-            property: "og:image",
-            content: `${post.bannerImage.resolutions.src}`
-          },
-          {
-            property: "og:url",
-            content: `${domain + location.pathname}`
-          },
-          {
-            name: "twitter:title",
-            content: `${post.title}`
-          },
-          {
-            name: "twitter:description",
-            content: `${post.excerpt}`
-          },
-          {
-            name: "twitter:image",
-            content: `${post.bannerImage.resolutions.src}`
-          },
-          {
-            name: "twitter:url",
-            content: `${domain + location.pathname}`
-          },
-          {
-            name: "twitter:card",
-            content: `${logo}`
-          }
-        ]}
-      />
 
-      <Flex justify="center">
-        <Container>
-          <Title>{post.title}</Title>
-        </Container>
-      </Flex>
-      <Flex>
-        <ImageBox
-          width={1}
-          mb={4}
-          image={post.bannerImage ? post.bannerImage.resolutions.src : null}
+  return (
+    <Layout location={location}>
+      <BlogPostContainer>
+        <Helmet
+          title={`Ricardo Abreu - ${post.title}`}
+          meta={[
+            {
+              property: "og:title",
+              content: `${post.title}`
+            },
+            {
+              property: "og:description",
+              content: `${post.excerpt}`
+            },
+            {
+              property: "og:image",
+              content: `${post.bannerImage.resolutions.src}`
+            },
+            {
+              property: "og:url",
+              content: `${domain + location.pathname}`
+            },
+            {
+              name: "twitter:title",
+              content: `${post.title}`
+            },
+            {
+              name: "twitter:description",
+              content: `${post.excerpt}`
+            },
+            {
+              name: "twitter:image",
+              content: `${post.bannerImage.resolutions.src}`
+            },
+            {
+              name: "twitter:url",
+              content: `${domain + location.pathname}`
+            },
+            {
+              name: "twitter:card",
+              content: `${logo}`
+            }
+          ]}
         />
-      </Flex>
-      <Flex justify="center">
-        <Container>
-          <Metadata>
-            <Category>{post.category}</Category>
-            <CardDate dateTime={post.date}>{post.date}</CardDate>
-          </Metadata>
-          <div
-            className="blog-post-content"
-            dangerouslySetInnerHTML={{
-              __html: post.content.childMarkdownRemark.html
-            }}
+
+        <Flex justify="center">
+          <Container>
+            <Title>{post.title}</Title>
+          </Container>
+        </Flex>
+        <Flex>
+          <ImageBox
+            width={1}
+            mb={4}
+            image={post.bannerImage ? post.bannerImage.resolutions.src : null}
           />
-          <Box mt={4}>
-            <ReactDisqusComments
-              shortname="itsricardo"
-              category_id="2020677"
-              identifier={post.title.replace(" ", "-")}
-              title={post.title}
-              url={"itsricardo.com"}
-              onNewComment={handleNewComment}
+        </Flex>
+        <Flex justify="center">
+          <Container>
+            <Metadata>
+              <Category>{post.category}</Category>
+              <CardDate dateTime={post.date}>{post.date}</CardDate>
+            </Metadata>
+            <div
+              className="blog-post-content"
+              dangerouslySetInnerHTML={{
+                __html: post.content.childMarkdownRemark.html
+              }}
             />
-          </Box>
-        </Container>
-      </Flex>
-    </BlogPostContainer>
+          </Container>
+        </Flex>
+      </BlogPostContainer>
+    </Layout>
   );
 }
 
