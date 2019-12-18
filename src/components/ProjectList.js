@@ -1,15 +1,13 @@
-import React from "react";
-import { Flex, Box } from "grid-styled";
-import ProjectCard from "./ProjectCard";
-import photoCanvasImage from "../assets/images/project_1.png";
-import cardsMenuConcept from "../assets/images/project_2.png";
 import Link from "gatsby-link";
+import { Box, Flex } from "grid-styled";
+import React from "react";
+import ProjectCard from "./ProjectCard";
 
 const ProjectList = props => {
   const { projects } = props;
   if (projects) {
     return (
-      <Flex wrap>
+      <Flex flexWrap="wrap">
         {projects.map(({ node: project }) => (
           <Box
             width={[1, 1 / 2, 1 / 2, 1 / 2]}
