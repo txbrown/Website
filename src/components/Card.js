@@ -1,8 +1,8 @@
-import { Button } from "@chakra-ui/core";
-import Img from "gatsby-image";
-import React from "react";
-import styled from "styled-components";
-import Skrim from "./Skrim";
+import { Button } from '@chakra-ui/core';
+import Img from 'gatsby-image';
+import React from 'react';
+import styled from 'styled-components';
+import Skrim from './Skrim';
 
 const Wrapper = styled.div`
   position: relative;
@@ -54,8 +54,8 @@ const Card = props => {
       <Skrim />
       <Img
         resolutions={image.resolutions}
-        style={{ width: "100%", height: "100%" }}
-        imgStyle={{ width: "100%", height: "100%" }}
+        style={{ width: '100%', height: '100%' }}
+        imgStyle={{ width: '100%', height: '100%' }}
       />
 
       <Content>
@@ -64,17 +64,17 @@ const Card = props => {
           {/* <CardDate dateTime={date}>{date}</CardDate> */}
         </Metadata>
 
-        <a href="#">
+        <a href='#'>
           <Title>{title}</Title>
         </a>
         {/* <Description>{description}</Description> */}
       </Content>
       <Button
-        color="brand.900"
+        color='brand.900'
         style={{
-          position: "absolute",
-          bottom: "1rem",
-          left: "1rem",
+          position: 'absolute',
+          bottom: '1rem',
+          left: '1rem',
           zIndex: 100
         }}
       >

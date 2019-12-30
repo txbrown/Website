@@ -1,18 +1,24 @@
-import { Box, Flex } from "grid-styled";
-import React from "react";
-import Helmet from "react-helmet";
-import styled from "styled-components";
-import logo from "../assets/images/logo.svg";
-import Container from "../components/Container";
-import Layout from "../components/layout";
-import Title from "../components/Title";
+import Img from 'gatsby-image';
+import { Box, Flex } from 'grid-styled';
+import React from 'react';
+import Helmet from 'react-helmet';
+import styled from 'styled-components';
+import logo from '../assets/images/logo.svg';
+import Container from '../components/Container';
+import Layout from '../components/layout';
+import Title from '../components/Title';
+
 const ImageBox = styled(Box)`
   background: url(${props => props.image});
   background-size: cover;
   height: 20em;
 `;
 
-const BlogPostContainer = styled.div`margin-bottom 6.7em;`;
+const BlogPostContainer = styled.div`
+  margin-bottom: 6.7em;
+  max-width: 720px;
+  margin: 0 auto;
+`;
 
 const Metadata = styled.div`
   margin-bottom: 1.1em;
@@ -30,8 +36,8 @@ const handleNewComment = () => {};
 
 export default function Template({ data, location }) {
   const { contentfulBlogPost: post } = data;
-  const domain = "https://itsricardo.com";
-
+  const domain = 'https://itsricardo.com';
+  console.log(data);
   return (
     <Layout location={location}>
       <BlogPostContainer>
@@ -39,64 +45,65 @@ export default function Template({ data, location }) {
           title={`Ricardo Abreu - ${post.title}`}
           meta={[
             {
-              property: "og:title",
+              property: 'og:title',
               content: `${post.title}`
             },
             {
-              property: "og:description",
+              property: 'og:description',
               content: `${post.excerpt}`
             },
             {
-              property: "og:image",
+              property: 'og:image',
               content: `${post.bannerImage.resolutions.src}`
             },
             {
-              property: "og:url",
+              property: 'og:url',
               content: `${domain + location.pathname}`
             },
             {
-              name: "twitter:title",
+              name: 'twitter:title',
               content: `${post.title}`
             },
             {
-              name: "twitter:description",
+              name: 'twitter:description',
               content: `${post.excerpt}`
             },
             {
-              name: "twitter:image",
+              name: 'twitter:image',
               content: `${post.bannerImage.resolutions.src}`
             },
             {
-              name: "twitter:url",
+              name: 'twitter:url',
               content: `${domain + location.pathname}`
             },
             {
-              name: "twitter:card",
+              name: 'twitter:card',
               content: `${logo}`
             }
           ]}
         />
 
-        <Flex justify="center">
+        <Flex justify='center'>
           <Container>
             <Title>{post.title}</Title>
           </Container>
         </Flex>
         <Flex>
-          <ImageBox
-            width={1}
+          <Img
+            imgStyle={{ width: '100%' }}
+            style={{ objectFit: 'cover', width: '100%', height: '280px' }}
             mb={4}
-            image={post.bannerImage ? post.bannerImage.resolutions.src : null}
+            resolutions={post.bannerImage ? post.bannerImage.resolutions : null}
           />
         </Flex>
-        <Flex justify="center">
+        <Flex justify='center'>
           <Container>
             <Metadata>
               <Category>{post.category}</Category>
               <CardDate dateTime={post.date}>{post.date}</CardDate>
             </Metadata>
             <div
-              className="blog-post-content"
+              className='blog-post-content'
               dangerouslySetInnerHTML={{
                 __html: post.content.childMarkdownRemark.html
               }}
@@ -122,6 +129,10 @@ export const pageQuery = graphql`
       bannerImage {
         resolutions(width: 344) {
           ...GatsbyContentfulResolutions
+        }
+
+        fluid(maxWidth: 500) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
     }

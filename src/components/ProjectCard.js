@@ -1,6 +1,6 @@
-import Img from "gatsby-image";
-import React from "react";
-import styled from "styled-components";
+import Img from 'gatsby-image';
+import React from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -24,7 +24,7 @@ const Title = styled.h3`
 `;
 
 const Skrim = styled.div`
-  background: black;
+  background: linear-gradient(transparent, #191919, #000);
   opacity: 0.3;
   width: 100%;
   height: 100%;
@@ -41,9 +41,9 @@ const ProjectCard = props => {
       <Img
         backgroundColor
         resolutions={image}
-        alt=""
-        style={{ width: "100%", height: "100%" }}
-        imgStyle={{ width: "100%", height: "100%" }}
+        alt=''
+        style={{ width: '100%', height: '100%' }}
+        imgStyle={{ width: '100%', height: '100%' }}
       />
 
       <Title>{title}</Title>

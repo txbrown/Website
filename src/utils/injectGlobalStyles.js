@@ -1,9 +1,9 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-const paleGrey = "#f2f2f2";
-const lightGrey = "#B1B0B5";
-const darkGrey = "#4f4f4f";
-const accentGreen = "#33d399";
+const paleGrey = '#f2f2f2';
+const lightGrey = '#B1B0B5';
+const darkGrey = '#4f4f4f';
+const accentGreen = '#33d399';
 
 export const GlobalStyles = createGlobalStyle`
 /* reset css */
@@ -90,10 +90,17 @@ p:last-child{
 
 p a, .blog-post-content a{
 	color: #33d399;
+	cursor:pointer;
 }
 
 .blog-post-content img{
-	max-width: 100%;
+    max-width: 100%;
+    height: 314px;
+    display: inline-block;
+}
+
+.blog-post-content p {
+	line-height: 1.756;
 }
 
 .blog-post-content ul {
