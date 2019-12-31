@@ -21,6 +21,7 @@ const Title = styled.h3`
   color: #fff;
   font-size: 2em;
   z-index: 100;
+  margin-right: 1rem;
 `;
 
 const Skrim = styled.div`
