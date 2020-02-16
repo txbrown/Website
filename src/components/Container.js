@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export const StyledContainer = styled.div`
   padding: 2rem 0;
@@ -7,7 +7,7 @@ export const StyledContainer = styled.div`
   max-width: 720px;
 
   @media screen and (max-width: 480px) {
-    margin: 0 40px;
+    margin: 0 16px;
   }
 `;
 

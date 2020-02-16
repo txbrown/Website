@@ -116,6 +116,12 @@ blockquote{
 	margin-bottom: 1em;
 }
 
+
+.gatsby-highlight {
+    display: inline-grid;
+	width: 100%;
+}
+
 .gatsby-highlight-code-line {
   background-color: #feb;
   display: block;
