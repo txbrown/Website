@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import logo from "../assets/images/logo.svg";
-import { StyledContainer } from "./Container";
-import Link from "./Link";
+import React from 'react';
+import styled from 'styled-components';
+import logo from '../assets/images/logo.svg';
+import { StyledContainer } from './Container';
+import Link from './Link';
 
 const NavContainer = styled(StyledContainer)`
   display: flex;
@@ -25,6 +25,10 @@ const NavList = styled.ul`
 const StyledHeader = styled.header`
   margin-bottom: 3.7em;
   margin-top: 80px;
+
+  @media screen and (max-width: 480px) {
+    margin-top: 0;
+  }
 `;
 
 const Logo = styled.img`
@@ -37,25 +41,25 @@ export default props => {
   return (
     <StyledHeader>
       <NavContainer>
-        <div id="logo-wrapper">
-          <Link to="/" style={{ textDecoration: "none", borderBottom: "none" }}>
-            <Logo src={logo} alt="logo" />
+        <div id='logo-wrapper'>
+          <Link to='/' style={{ textDecoration: 'none', borderBottom: 'none' }}>
+            <Logo src={logo} alt='logo' />
           </Link>
         </div>
-        <nav id="main-nav">
+        <nav id='main-nav'>
           <NavList>
             <NavItem>
-              <Link to="projects" activeStyle={{ color: "#33d399" }}>
+              <Link to='projects' activeStyle={{ color: '#33d399' }}>
                 Projects
               </Link>
             </NavItem>
             <NavItem>
-              <Link to="blog" activeStyle={{ color: "#33d399" }}>
+              <Link to='blog' activeStyle={{ color: '#33d399' }}>
                 Blog
               </Link>
             </NavItem>
             <NavItem>
-              <a href="mailto:itsricardo.contact@gmail.com?subject=Hi">
+              <a href='mailto:itsricardo.contact@gmail.com?subject=Hi'>
                 Contact
               </a>
             </NavItem>
