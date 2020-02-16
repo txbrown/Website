@@ -10,7 +10,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
-      resolve: "gatsby-transformer-remark",
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           `gatsby-remark-prismjs`,
@@ -24,6 +24,12 @@ module.exports = {
       options: {
         spaceId: `n3ul8nyrm3nv`,
         accessToken: `b0793bd319079d0ac727403bdb98d2448b9b2852e730b53a5928ab6cc8781444`
+      }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-119584888-3'
       }
     }
   ]
