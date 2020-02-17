@@ -127,7 +127,7 @@ export const pageQuery = graphql`
         }
       }
       bannerImage {
-        resolutions(width: 344) {
+        resolutions(width: 720) {
           ...GatsbyContentfulResolutions
         }
 
